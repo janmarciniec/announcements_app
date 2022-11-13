@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: head">    
+    </head>
+    <body>
+        <div th:include="layout :: navigationPanel"></div>
+        
+        <div class="container py-5">
+            
+            <div class="row" style="text-align: center;">
+                <div class="col-12">
+                    <h1>Logowanie</h1>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-4" style="display: block; margin-left: auto; margin-right: auto;">
+                    <form th:action="@{/login}" method="POST">
+                        <input type="text" class="form-control mb-2" name="login" placeholder="Login"/>
+                        <input type="password" class="form-control mb-3" name="passwd" placeholder="Hasło"/>
+                        <button type="submit" class="form-control btn btn-primary">Zaloguj się</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div th:include="layout :: scripts"></div>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: head">
+    </head>
+    <body>
+        <div th:include="layout :: navigationPanel"></div>
+        
+        <div class="container py-5">
+            
+            <div class="row" style="text-align: center;">
+                <div class="col-12">
+                    <h1>Edytuj profil</h1>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-4" style="display: block; margin-left: auto; margin-right: auto;">
+                    <form th:action="@{/update}" method="POST" th:object="${user}">
+                        <input type="hidden" th:field="*{userid}"/>
+                        
+                        <input type="text" class="form-control" name="name" th:field="*{name}" placeholder="Imię" th:errorClass="error"/>
+                        <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        
+                        <input type="text" class="form-control mt-2" name="surname" th:field="*{surname}" placeholder="Nazwisko" th:errorClass="error"/>
+                        <span class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+                        
+                        <input type="text" class="form-control mt-2" name="login" th:field="*{login}" placeholder="Login" th:errorClass="error" readonly/>
+                        <span class="error" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+                        
+                        <input type="password" class="form-control mt-2" name="password" th:field="*{password}" placeholder="Hasło" th:errorClass="error"/>
+                        <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        
+                        <button type="submit" class="form-control btn btn-primary mt-3">Zapisz</button>
+                        <a th:href="@{/profile}" class="form-control btn btn-secondary mt-1">Anuluj</a>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+
+        <div th:include="layout :: scripts"></div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: head">
+    </head>
+    <body>
+        <div th:include="layout :: navigationPanel"></div>
+        
+        <div class="container py-5">
+            
+            <div class="row" style="text-align: center;">
+                <div class="col-12">
+                    <h1>Edytuj ogłoszenie</h1>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-4" style="display: block; margin-left: auto; margin-right: auto;">
+                    <form th:action="@{/update-announcement}" method="POST" th:object="${announcement}">
+                        <input type="hidden" th:field="*{announcementid}"/>
+                        
+                        <input type="text" class="form-control" th:field="*{title}" name="title" placeholder="Tytuł" th:errorClass="error"/>
+                        <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                        
+                        <textarea class="form-control mt-2" th:field="*{description}" name="description" placeholder="Opis" th:errorClass="error" /></textarea>
+                        <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                        
+                        <input type="text" class="form-control mt-2" th:field="*{price}" name="price" placeholder="Cena" th:errorClass="error" />
+                        <span class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                        
+                        <input type="text" class="form-control mt-2" th:field="*{location}" name="location" placeholder="Lokalizacja" th:errorClass="error" />
+                        <span class="error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></span>
+                        
+                        <input type="text" class="form-control mt-2" th:field="*{phone}" name="phone" placeholder="Numer kontaktowy" th:errorClass="error" />
+                        <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+                        
+                        <button type="submit" class="form-control btn btn-primary mt-3">Zapisz</button>
+                        <a th:href="@{/profile}" class="form-control btn btn-secondary mt-1">Anuluj</a>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div th:include="layout :: scripts"></div>
+    </body>
+</html>

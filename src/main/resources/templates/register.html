@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: head">
+    </head>
+    <body>
+        <div th:include="layout :: navigationPanel"></div>
+        
+        <div class="container py-5">
+            
+            <div class="row" style="text-align: center;">
+                <div class="col-12">
+                    <h1>Rejestracja</h1>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-4" style="display: block; margin-left: auto; margin-right: auto;">
+                        <!--
+            th:object, th:field - z wartości pól formularza tworzymy obiekt klasy User
+            obiekt user jest odbierany przez kontroler z wykorzystaniem adnotacji @ModelAttribute
+        -->
+            <form th:action="@{/register}" method="POST" th:object="${user}">
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Imię" th:errorClass="error" />
+                <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                <input type="text" class="form-control mt-2" th:field="*{surname}" placeholder="Nazwisko" th:errorClass="error" />
+                <span class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+                <input type="text" class="form-control mt-2" th:field="*{login}" placeholder="Login" th:errorClass="error" />
+                <span class="error" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+                <input type="password" class="form-control mt-2" th:field="*{password}" placeholder="Hasło" th:errorClass="error" />
+                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                <button type="submit" class="form-control btn btn-primary mt-3">Zarejestruj się</button>
+            </form>
+            </div>
+        </div>
+
+        <div th:include="layout :: scripts"></div>
+    </body>
+</html>
